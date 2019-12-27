@@ -20,7 +20,7 @@ class TextPipeline(object):
         if item['text']:
             if len(item['text']) > self.limit:
                 #运用切片，去除大于50个的字符，然后用restrip()方法来去除字符串末尾指定字符（空格），最后加上"..."
-                item['text'] = item['text'][0:self.limit].restrip()+'...'
+                item['text'] = item['text'][0:self.limit].rstrip()+'...'
             return item
         else:
             return DropItem("Missing Text")
@@ -48,7 +48,7 @@ class MongoPipeline(object):
 
     #进行了数据的插入操作
     def process_item(self, item, spider):
-        name = item._class_._name_
+        name = item.__class__.__name__
         self.db[name].insert(dict(item))
         return  item
 
