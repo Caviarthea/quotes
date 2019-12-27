@@ -14,8 +14,8 @@ BOT_NAME = 'quotes'
 SPIDER_MODULES = ['quotes.spiders']
 NEWSPIDER_MODULE = 'quotes.spiders'
 
-MONGOURI = 'localhost'
-MONGODB = 'quote'
+MONGO_URI = 'localhost'
+MONGO_DB = 'quote'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'quotes (+http://www.yourdomain.com)'
@@ -66,9 +66,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'quotes.pipelines.QuotesPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'quotes.pipelines.TextPipeline': 300,
+    'quotes.pipelines.MongoPipeline': 400
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
